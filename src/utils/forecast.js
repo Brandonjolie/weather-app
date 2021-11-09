@@ -1,6 +1,6 @@
 const request = require('request')
-const forecast = (center, callback) => {
-    const url = `http://api.weatherstack.com/current?access_key=1124da7946c1973c950af00afd3d091f&query=${center[0]},${center[1]}`
+const forecast = (address, callback) => {
+    const url = `http://api.weatherstack.com/current?access_key=1124da7946c1973c950af00afd3d091f&query=${address}`
     request({ url, json: true }, (error, { body }) => {
         if (error) {
             callback("Unable to connect to weather service", undefined)

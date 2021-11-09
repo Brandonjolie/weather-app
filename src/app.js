@@ -24,22 +24,18 @@ app.use(express.static(publicDirectory))
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
         return res.send({ error: "No address supplied" })
-    } else return geocode(req.query.address, (error, { center, text } = {}) => {
+    } else return forecast(req.query.address, (error, forecast_data) => {
         if (error) {
             return res.send({ error })
         }
-        forecast(center, (error, forecast_data) => {
-            if (error) {
-                return res.send({ error })
-            }
-            return res.send({
-                location: text,
-                forecast_data: forecast_data,
-                query: req.query.address
-            })
+        return res.send({
+            location: req.query.address,
+            forecast_data: forecast_data,
+            query: req.query.address
         })
     })
 })
+
 
 app.get('/about', (req, res) => {
     res.render('about', {
