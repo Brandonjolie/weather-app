@@ -16,7 +16,8 @@ weatherForm.addEventListener('submit', (e) => {
             }
             else {
                 messageOne.textContent = `Location: ${data.location}`
-                messageTwo.textContent = `Forecast: ${data.forecast_data}`
+                messageTwo.textContent = `Forecast: ${data.forecast_data.data}`
+                document.getElementById("weatherimage").src = data.forecast_data.img
             }
         }
         )

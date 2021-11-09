@@ -10,7 +10,10 @@ const forecast = (address, callback) => {
         }
         else {
             const { current: data } = body
-            callback(undefined, `${data.weather_descriptions[0]}.It is currently ${data.temperature} degrees out. There is a ${data.precip}% chance of rain`)
+            let return_string = ""
+            return_string += `${data.weather_descriptions[0]}.It is currently ${data.temperature} degrees out. There is a ${data.precip}% chance of rain.`
+            return_string += `The wind speed is ${data.wind_speed}mph and the humidity is ${data.humidity}%.`
+            callback(undefined, { data: return_string, img: data.weather_icons[0] })
             console.log(data)
         }
     })
