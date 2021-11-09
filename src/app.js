@@ -4,7 +4,7 @@ const hbs = require('hbs')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
-const runPort = 5000
+const runPort = process.env.PORT || 5000
 
 const app = express()
 
@@ -38,13 +38,6 @@ app.get('/weather', (req, res) => {
                 query: req.query.address
             })
         })
-    })
-
-
-
-    res.send({
-        forecast: 'It is snowing',
-        location: req.query.address
     })
 })
 
