@@ -1,6 +1,8 @@
 const request = require('request')
+const api_key = require('./apikey')
+
 const forecast = (address, callback) => {
-    const url = `http://api.weatherstack.com/current?access_key=1124da7946c1973c950af00afd3d091f&query=${address}`
+    const url = `http://api.weatherstack.com/current?access_key=${api_key}&query=${address}`
     request({ url, json: true }, (error, { body }) => {
         if (error) {
             callback("Unable to connect to weather service", undefined)
@@ -14,7 +16,6 @@ const forecast = (address, callback) => {
             return_string += `${data.weather_descriptions[0]}.It is currently ${data.temperature} degrees out. There is a ${data.precip}% chance of rain.`
             return_string += `The wind speed is ${data.wind_speed}mph and the humidity is ${data.humidity}%.`
             callback(undefined, { data: return_string, img: data.weather_icons[0] })
-            console.log(data)
         }
     })
 }
