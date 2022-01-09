@@ -1,3 +1,3 @@
 # weather-app
 
-Live demo @ https://dashboard.heroku.com/apps/jolie-weather-app
+Live demo @ https://jolie-weather-app.herokuapp.com/
